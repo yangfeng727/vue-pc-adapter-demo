@@ -2,7 +2,7 @@
 
 # 方案如下：
 ## 1.开发时使用px作为单位，然后通过webpack将px转为rem，实现适配  -- 当前 vue2 demo 中采用的这种
-比如采用 flexible【修改源码以支持pc】+ postcss-pxtorem 方案。【注：px转rem的插件有很多，如 px2rem-loader、postcss-adaptive等，原理差不多】  
+比如这里采用 lib-flexible【修改源码以支持pc，为了方便测量改为 1rem = 100px】+ postcss-pxtorem 方案。【注：px转rem的插件有很多，如 px2rem-loader、postcss-adaptive等，原理差不多】  
 >缺点：  
 1.内联样式中的px不会被转换    
 2.1px的不建议转换，若屏幕宽度过小缩放后将看不见，也可通过 minPixelValue 配置，ps：pc 端应该没有这个问题。
@@ -11,7 +11,9 @@
 5.计算肯定有轻微误差，小数点再多也不可能避免。  
 
 >优点：  
-改起来快，对第三方ui库可以处理。
+改起来快，对第三方ui库可以处理。  
+
+注意：demo中 1rem = 100px，设计稿只要是1920宽度的就行了，直接量设计稿宽高，是多少就是多少，单位直接用px。
 
 ## 2.Viewport 单位，类似方案一，只是将rem 改为了 vw
 采用 postcss-px-to-viewport 将px 转 vw，优缺点类似。可参考[再聊移动端页面的适配](https://www.w3cplus.com/css/vw-for-layout.html)。
