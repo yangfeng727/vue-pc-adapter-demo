@@ -5,7 +5,7 @@
 比如这里采用 lib-flexible【修改源码以支持pc，为了方便测量改为 1rem = 100px】+ postcss-pxtorem 方案。【注：px转rem的插件有很多，如 px2rem-loader、postcss-adaptive等，原理差不多】  
 >缺点：  
 1.内联样式中的px不会被转换    
-2.1px的不建议转换，若屏幕宽度过小缩放后将看不见，也可通过 minPixelValue 配置，ps：pc 端应该没有这个问题。
+2.1px的不建议转换，若屏幕宽度过小缩放后将看不见，也可通过 minPixelValue 配置，ps：pc 端应该没有这个问题。  
 3.开发时因为页面上都是转为rem后的值，不好确定其真实像素。--- 不过可以改为 100 倍数解决  
 4.页面换算有抖动。  
 5.计算肯定有轻微误差，小数点再多也不可能避免。  
@@ -17,6 +17,9 @@
 
 ## 2.Viewport 单位，类似方案一，只是将rem 改为了 vw
 采用 postcss-px-to-viewport 将px 转 vw，优缺点类似。可参考[再聊移动端页面的适配](https://www.w3cplus.com/css/vw-for-layout.html)。
+
+>加一条缺点：
+当审查元素的时候，不好查看该元素的原始像素值，因为显示的是转换后的vw，但方案一可以通过 1rem = 100px 方式快速换算成原始值，也就是 * 100。
 
 ## 3.根据特别的分辨率手写媒体查询针对处理，通常单位还是用的rem，当前也可以是Viewport 单位，百分比等
 ```css
